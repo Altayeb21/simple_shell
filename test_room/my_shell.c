@@ -1,17 +1,27 @@
-#include <main.h>
+#include "main.h"
 
-int main(int alta, char **clasy){
-    char *prompt = "(ACshell) $ ";
-    char *lineptr;
-    size_t n = 0;
+/**
+* main - the shell build
+* @alta: int vairable
+* @classy: char variable
+* *
+* Return: (0)
+*/
 
-    /* void variables of main */
-    (void)alta; (void)clasy;
+int main(int alta, char **classy)
+{
+char *prompt = "(ACshell) $ ";
+char *lineptr;
+size_t n = 0;
 
-    printf("%s", prompt);
-    getline(&lineptr, &n, stdin);
-    printf("%s\n", lineptr);
+/* void variables of main */
+(void)alta;
+(void)classy;
 
-    free(lineptr);
-    return (0);
+printf("%s", prompt);
+getline(&lineptr, &n, stdin);
+printf("%s\n", lineptr);
+
+free(lineptr);
+return (0);
 }
