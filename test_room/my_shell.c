@@ -19,8 +19,10 @@ ssize_t nchars_read;
 const char *delim = " \n";
 int tokens_num = 0;
 char *token;
+char *exit = "exit";
 int i; /*1st for loop int*/
 int j; /*2nd for loop int*/
+int result; /*for strcmp func compairing */
 
 printf("%s $: ", shell);
 nchars_read = getline(&command, &n, stdin);
@@ -70,6 +72,16 @@ token = strtok(NULL, delim);
 }
 
 argv[i] = NULL;
+
+/* exit command */
+result = strcmp(argv[0], exit);
+
+if (result == 0)
+{
+printf("shell exiting. . . .\n");
+
+return (-1);
+}
 
 /* print the content of argv (command) */
 for (j = 0; j < tokens_num - 1; j++)
