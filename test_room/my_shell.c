@@ -9,7 +9,6 @@
 int main(int argc, char **argv)
 {
 
-/* creating infinite loop (shell running) */
 while (1)
 {
 char *shell = "(ACshell)";
@@ -23,6 +22,8 @@ char *exit = "exit";
 int i; /*1st for loop int*/
 int j; /*2nd for loop int*/
 int result; /*for strcmp func compairing */
+int wstatus;
+pid_t id;
 
 (void)argc;
 
@@ -85,6 +86,10 @@ printf("shell exiting. . . .\n");
 return (-1);
 }
 
+id = fork();
+/* creating infinite loop (shell running) */
+if (id == 0)
+{
 printf("running command ( ");
 /* print the content of argv (command) */
 for (j = 0; j < tokens_num - 1; j++)
@@ -95,11 +100,16 @@ printf("%s ", argv[j]);
 printf(" ) . . .\n");
 
 execmd(argv);
-
+}
+else
+{
+wait(&wstatus);
+printf("at perents\n");
+}
 /* free up memory*/
 free(command);
 free(command_copy);
 }
-
+/* in parent process */
 return (0);
 }
