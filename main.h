@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+// Function prototypes
 void execmd(char **argv);
 char *get_location(char *command_path);
 
